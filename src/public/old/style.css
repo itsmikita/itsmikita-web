@@ -1,0 +1,19 @@
+/* */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+h1, p {
+	font-family: "proxima-nova-alt",sans-serif;
+	font-style: italic;
+	font-weight: 300;
+	text-transform: uppercase;
+}
+h1 {
+	font-size: 60px;
+}
+p {
+	font-size: 14px;
+}

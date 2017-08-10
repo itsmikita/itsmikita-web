@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf8" />
+<title>Hello! It's Mikita</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<style type="text/css">
+body {
+	background-color: black;
+	background-image: url( V3.gif );
+	background-position: center;
+	background-size: 100%;
+}
+html, body {
+	height: 100%;
+	overflow: hidden;
+}
+#logo {
+	background-color: rgba( 255, 255, 255, 0.05 );
+	background-image: url( itsmikita.png );
+	background-position: center;
+	background-repeat: no-repeat;
+	display: block;
+	height: 100%;
+	width: 100%;
+}
+
+@media screen and ( max-width: 1000px ) {
+	body {
+		background-size: auto 100%;
+	}
+}
+</style>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+	$( function() {
+		function noise() {
+			setInterval( function() {
+				var x = ( Math.floor( Math.random() * 3 ) + 1 ) * 1,
+					y = ( Math.floor( Math.random() * 3 ) + 1 ) * 1;
+				
+				
+				
+				$( '#logo' ).css( 'background-position', ( x + 100 ) + 'px  ' + ( y + 64 ) + 'px' );
+			}, 200 );
+		}
+		
+		noise();
+	} );
+</script>
+
+</head>
+<body>
+
+<!-- Hello! It's Mikita. -->
+
+<div id="logo"></div>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-39478565-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>
