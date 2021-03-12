@@ -1,0 +1,13 @@
+{
+  "name": "itsmikita-web",
+  "version": "2021.0",
+  "description": "homepage",
+  "main": "index.js",
+  "repository": "https://github.com/itsmikita/itsmikita-web.git",
+  "author": "Mikita Stankiewicz <itsmikita@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "server": "hhvm -m server -c hhvm.ini"
+  }
+}
