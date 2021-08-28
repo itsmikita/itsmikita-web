@@ -1,13 +1,16 @@
 {
   "name": "itsmikita-web",
-  "version": "2021.0",
-  "description": "homepage",
+  "version": "2021.1",
+  "description": "It's Mikita Web",
   "main": "index.js",
   "repository": "https://github.com/itsmikita/itsmikita-web.git",
   "author": "Mikita Stankiewicz <itsmikita@gmail.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "server": "hhvm -m server -c hhvm.ini"
+    "start": "ttab yarn server && yarn editor && yarn browser",
+    "browser": "open -a Safari https://127.0.0.1",
+    "editor": "code .",
+    "server": "nginx -c ~/git/itsmikita-web/nginx.conf"
   }
 }

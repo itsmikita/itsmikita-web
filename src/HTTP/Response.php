@@ -119,7 +119,7 @@ class Response
   /**
    * Send HTTP Response to Client
    */
-  public function transmit()
+  public function send()
   {
     // header( 'HTTP/1.1 ' . $this->getStatus() . ' ' . $this->getReason() );
     foreach( $this->getHeaders() as $header ) {

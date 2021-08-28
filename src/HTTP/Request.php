@@ -6,7 +6,7 @@ use App\HTTP\Message;
 use App\HTTP\Response;
 
 /**
- * HTTP Request Class
+ * HTTP Request
  */
 class Request
 {
@@ -35,7 +35,7 @@ class Request
    * @param $headers
    * @param $body
    */
-  public function __construct( $method, $url, $headers, $body = null )
+  public function __construct( $method, $url, $headers = [], $body = null )
   {
     $this->setURL( $url );
     $this->setMethod( $method );
@@ -232,6 +232,29 @@ class Request
     }
   }
 
+  static public function getAllHeaders()
+  {
+    $headers = [];
+    foreach( $_SERVER as $key => $value ) {
+      if( "HTTP_" == substr( $key, 0, 5 ) ) {
+        $headers[
+          str_replace(
+            " ", "-", ucwords(
+              strtolower(
+                str_replace(
+                  "_", " ", substr(
+                    $key, 5
+                  )
+                )
+              )
+            )
+          )
+        ] = $value;
+      }
+    }
+    return $headers;
+  }
+
   /**
    * Create HTTP Request from Globals
    */
@@ -239,7 +262,7 @@ class Request
   {
     $method = $_SERVER['REQUEST_METHOD'] ?? "GET";
     $url = self::getURLFromGlobals();
-    $headers = getallheaders();
+    $headers = self::getAllHeaders();
     $body = self::getBodyFromGlobals();
     $request = new Request( $method, $url, $headers, $body );
     $request->setParams( $_REQUEST );
@@ -251,7 +274,7 @@ class Request
   /**
    * Transmit Request to the remote server
    */
-  public function transmit()
+  public function send()
   {
     $request = curl_init();
     curl_setopt_array(

@@ -32,8 +32,10 @@ trait Message
    */
   public function setHeaders( $headers )
   {
-    foreach( $headers as $name => $value ) {
-      $this->setHeader( $name, $value );
+    if( is_array( $headers ) ) {
+      foreach( $headers as $name => $value ) {
+        $this->setHeader( $name, $value );
+      }
     }
   }
 

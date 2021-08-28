@@ -10,6 +10,7 @@ use App\HTTP\Response;
 try {
   $dispatcher = new Dispatcher( [
     new App\Resources\Home
+    // new App\Resources\Instagram
   ] );
   $request = Request::createFromGlobals();
   $response = $dispatcher->handle( $request );
@@ -18,7 +19,7 @@ try {
   }
 } catch( Exception $error ) {
   $response = new Response( [
-    'code' => $error->getCode(),
+    // 'code' => $error->getCode(),
     'error' => $error->getMessage()
   ] );
 }
@@ -31,4 +32,4 @@ $response->setHeaders( [
   'Access-Control-Allow-Headers' => "Access-Control-Allow-Headers,Access-Control-Allow-Origin,Authorization,Content-Type,Accept"
 ] );
 
-$response->transmit();
+$response->send();

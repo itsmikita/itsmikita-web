@@ -5,6 +5,7 @@ namespace App\Resources;
 use App\HTTP\Request;
 use App\HTTP\Response;
 use App\HTTP\Middleware;
+use Exception;
 
 class Home
 {
@@ -21,19 +22,11 @@ class Home
    */
   public function process( $request, $handler )
   {
-    $instagram = new Request(
-      "GET",
-      "https://graph.instagram.com/17841401572810170/media?fields=media_url,caption&access_token=IGQVJXc2p2amNpVGVNTGxnR3g3ZAjRiV1N4MlFVVnByZAkhZAUzEzajdxNnJaRElrNEVtdlNvZAno5UWYtYmJVdzdOYVdwM2ljYlJYcDd1MmpZAdzBTTXJla1QwbVNkWURQczBNSHI3eHhSbk10UXZAfdTZAoVgZDZD",
-      [
-        'Content-Type' => "application/json; charset=utf-8"
-      ]
-    );
-    $response = $instagram->transmit();
-    return new Response(
-      $response->getBody(),
-      [
-        'Content-Type' => "application/json; charset=utf-8"
-      ]
-    );
+    $path = UPLOAD_DIR . "/media.json";
+    if( ! file_exists( $path ) ) {
+      throw new Exception( "Storage file does not exist!" );
+    }
+    $media = json_decode( file_get_contents( $path ), true );
+    return new Response( $media );
   }
 }

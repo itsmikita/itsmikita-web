@@ -1,5 +1,12 @@
-( function() {
-  fetch( '/api' ).then( response => {
-    response.json().then( data => console.log( data ) );
+( function () {
+  window.addEventListener( "load", () => {
+    fetch( "/api" )
+      .then( response => response.json() )
+      .then( response => {
+        console.log( response );
+      } )
+      .catch( error => {
+        console.error( error );
+      } );
   } );
 } )();
