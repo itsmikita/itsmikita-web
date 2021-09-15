@@ -5,7 +5,9 @@ namespace App\Resources;
 use App\HTTP\Response;
 use App\HTTP\Middleware;
 use App\Instagram\Spider;
+use App\Factory\FileSystem;
 use App\Factory\File;
+use Exception;
 
 class Instagram
 {
@@ -25,23 +27,20 @@ class Instagram
     $spider = new Spider();
     $media = $spider->getMedia( "itsmikita" );
     foreach( $media as $x => $item ) {
-      $image = new File( file_get_contents( $item['remote_url'] ) );
-      list( $filename ) = explode( "?", basename( $item['remote_url'] ) );
-      $filepath = sprintf( "%s/%s", UPLOAD_DIR, $filename );
+      $image = file_get_contents( $item['remote_url'] );
+      $filename = substr( basename( $item['remote_url'] ), 0, strpos( basename( $item['remote_url'] ), "?" ) );
+      $path = sprintf( "%s/%s", UPLOAD_DIR, $filename );
       $url = sprintf( "%s/%s", UPLOAD_URL, $filename );
-      if( file_exists( $filepath ) ) {
-        unlink( $filepath );
-      }
-      $image->write( $filepath );
+      file_put_contents( $path, $image );
       $media[ $x ]['url'] = $url;
-      $media[ $x ]['file'] = $filepath;
+      $media[ $x ]['path'] = $path;
+      unset( $media[ $x ]['remote_url'] );
     }
-    $store = new File( json_encode( $media ) );
-    $path = UPLOAD_DIR . "/media.json";
-    if( file_exists( $path ) ) {
-      unlink( $path );
+    $storage = UPLOAD_DIR . "/media.json";
+    if( file_exists( $storage ) ) {
+      unlink( $storage );
     }
-    $store->write( $path );
-    return new Response( [ 'store' => $path ] );
+    file_put_contents( $storage, json_encode( $media ) );
+    return new Response( [ 'media' => $storage ] );
   }
 }

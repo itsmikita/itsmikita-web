@@ -3,7 +3,7 @@
 require __DIR__ . "/config.php";
 
 /**
- * PSR-4 Class Autoloader
+ * @deprecated PSR-4 Class Autoloader
  *
  * @param $class
  */

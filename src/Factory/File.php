@@ -2,12 +2,16 @@
 
 namespace App\Factory;
 
+use App\Factory\FileSystem;
 use Exception;
 
 class File
 {
   // Contents
   private $data;
+
+  // Path
+  private $path;
 
   /**
    * Constructor
@@ -26,10 +30,9 @@ class File
    */
   public function read( $path )
   {
-    if( ! file_exists( $path ) ) {
-      throw new Exception( "Could not read the file contents!" );
-    }
-    $this->data = file_get_contents( $path );
+    $filesystem = new FileSystem();
+    $file = $filesystem->read( $path );
+    return $file;
   }
 
   /**
@@ -39,9 +42,34 @@ class File
    */
   public function write( $path )
   {
-    if( file_exists( $path ) ) {
-      throw new Exception( "File already exists!" );
-    }
-    file_put_contents( $path, $this->data );
+    $this->setPath( $path );
+    $filesystem = new FileSystem();
+    $filesystem->write( $this );
+  }
+
+  /**
+   * Set full file path
+   * 
+   * @param $path
+   */
+  public function setPath( $path )
+  {
+    $this->path = $path;
+  }
+
+  /**
+   * Get file path
+   */
+  public function getPath()
+  {
+    return $this->path;
+  }
+
+  /**
+   * Get file data
+   */
+  public function getContents()
+  {
+    return $this->data;
   }
 }

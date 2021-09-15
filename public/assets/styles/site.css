@@ -9,6 +9,9 @@ html, body {
 }
 body {
   background-color: black;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 #backdrop {
   align-items: center;
@@ -36,7 +39,7 @@ body {
 }
 #logo polyline {
   fill: none;
-  stroke: white;
+  stroke: black;
   stroke-linecap: square;
   stroke-miterlimit: 10;
   stroke-width: 20px;

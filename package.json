@@ -10,7 +10,7 @@
   "scripts": {
     "start": "ttab yarn server && yarn editor && yarn browser",
     "browser": "open -a Safari https://127.0.0.1",
-    "editor": "code .",
+    "editor": "nova .",
     "server": "nginx -c ~/git/itsmikita-web/nginx.conf"
   }
 }

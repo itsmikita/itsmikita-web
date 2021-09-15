@@ -25,7 +25,10 @@ class Spider
    */
   public function fetchSource( $username )
   {
-    $source = file_get_contents( "https://www.instagram.com/{$username}/" );
+    $source = file_get_contents(
+      "https://www.instagram.com/{$username}/"
+      // UPLOAD_DIR . "/example.html"
+    );
     return $source;
   }
 
@@ -57,13 +60,10 @@ class Spider
         $this->parseEdges( $node['edge_sidecar_to_children']['edges'] );
       }
       $this->media[] = [
-        'type' => $node['is_video'] ? "video" : "image",
         'id' => $node['id'],
-        'shortcode' => $node['shortcode'],
         'width' => $node['dimensions']['width'],
         'height' => $node['dimensions']['height'],
-        'image' => $node['display_url'],
-        'video' => $node['video_url'] ?? null,
+        'remote_url' => $node['display_url'],
         'description' => $node['edge_media_to_caption']['edges'][ 0 ]['node']['text'] ?? ""
       ];
     }
@@ -79,7 +79,7 @@ class Spider
   {
     $source = $this->fetchSource( $username );
     $data = $this->extractJSON( $source );
-    $media = $this->parseEdges( $data );
+    $media = $this->parseEdges( $data['entry_data']['ProfilePage'][0]['graphql']['user']['edge_owner_to_timeline_media']['edges'] );
     return $media;
   }
 }

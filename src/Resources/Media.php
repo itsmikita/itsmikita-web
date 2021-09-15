@@ -7,12 +7,12 @@ use App\HTTP\Response;
 use App\HTTP\Middleware;
 use Exception;
 
-class Home
+class Media
 {
   use Middleware;
 
   // URL Path
-  private $path = "/api";
+  private $path = "/api/media";
 
   /**
    * Handle HTTP Request
