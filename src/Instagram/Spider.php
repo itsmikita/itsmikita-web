@@ -74,6 +74,7 @@ class Spider
   public function getMedia( $username )
   {
     $source = $this->fetchSource( $username );
+    die( var_dump( $source ) );
     $data = $this->extractJSON( $source );
     $media = $this->parseEdges( $data['entry_data']['ProfilePage'][0]['graphql']['user']['edge_owner_to_timeline_media']['edges'] );
     return $media;
