@@ -22,6 +22,7 @@ class Spider
    */
   public function fetchSource( $username )
   {
+    // date_default_timezone_set( 'Europe/Minsk' );
     $source = file_get_contents(
       "https://www.instagram.com/{$username}/"
     );
@@ -37,7 +38,7 @@ class Spider
   { 
     $pattern = '#<\s*?script\b[^>]*>window\._sharedData = (\{.*?\});?</script\b[^>]*>#s';
     if( ! preg_match( $pattern, $source, $matches ) ) {
-      throw new Exception( "Failed to not extract JSON from source!" );
+      throw new Exception( "Failed to extract JSON from source!" );
     }
     $data = json_decode( $matches[ 1 ], true );
     return $data;
@@ -75,7 +76,9 @@ class Spider
   {
     $source = $this->fetchSource( $username );
     $data = $this->extractJSON( $source );
-    die( var_dump( $data ) );
+    if( ! isset( $data['entry_data']['ProfilePage'][0]['graphql']['user']['edge_owner_to_timeline_media']['edges'] ) ) {
+      throw new Exception( "Failed to extract edges from JSON!" );
+    }
     $media = $this->parseEdges( $data['entry_data']['ProfilePage'][0]['graphql']['user']['edge_owner_to_timeline_media']['edges'] );
     return $media;
   }
