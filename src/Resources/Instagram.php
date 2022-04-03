@@ -41,6 +41,6 @@ class Instagram
       unlink( $storage );
     }
     file_put_contents( $storage, json_encode( $media ) );
-    return new Response( [ 'media' => $storage ] );
+    return new Response( [ 'media' => $storage ] );  
   }
 }

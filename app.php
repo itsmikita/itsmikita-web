@@ -34,9 +34,6 @@ catch( Exception $error ) {
 }
 
 $response->setHeaders( [
-  'Content-Type' => "application/json; charset=utf-8",
-  'Accept' => "application/json; charset=utf-8",
-  'Access-Control-Allow-Origin' => "*",
-  'Access-Control-Allow-Headers' => "Access-Control-Allow-Headers,Access-Control-Allow-Origin,Authorization,Content-Type,Accept"
+  'Content-Type' => "application/json; charset=utf-8"
 ] );
 $response->send();

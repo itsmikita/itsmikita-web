@@ -7,9 +7,6 @@ use Exception;
 
 class Spider
 {
-  // Extracted Instagram Media
-  private $media = [];
-
   /**
    * Constructor
    */
@@ -27,7 +24,6 @@ class Spider
   {
     $source = file_get_contents(
       "https://www.instagram.com/{$username}/"
-      // UPLOAD_DIR . "/example.html"
     );
     return $source;
   }
