@@ -1,34 +1,21 @@
-<!doctype html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>It's Mikita</title>
-    <link rel="stylesheet" href="assets/styles/site.css">
-    <script src="assets/scripts/site.js"></script>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        background-repeat: no-repeat;
+        background-color: #333;
+        background-position: center;
+        background-image: url( "data:image/gif;base64,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" );
+        overflow: hidden;
+      }
+    </style>
   </head>
   <body>
-		<main id="backdrop">
-			<a href="mailto:itsmikita@gmail.com?subject=Hello">
-				<svg id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 260">
-					<polyline class="i1" points="10,10 10,50" />
-					<polyline class="i1" points="10,90 10,250 50,250" />
-					<polyline class="t1" points="50,10 50,210 90,210 90,250 130,250" />
-					<polyline class="t1" points="50,90 90,90" />
-					<polyline class="single-quote" points="90,10 90,50" />
-					<polyline class="s" points="90,130 90,170 130,170 130,10 170,10 170,130" />
-					<polyline class="m" points="210,250 210,130 250,130 250,250 290,250 290,10 330,10 330,250" />
-					<polyline class="i2" points="370,10 370,50" />
-					<polyline class="i2" points="370,90 370,250 410,250" />
-					<polyline class="k" points="410,10 410,210" />
-					<polyline class="k" points="410,130 450,130 450,90 490,90 490,50 530,50 530,10" />
-					<polyline class="k" points="450,130 450,170 490,170 490,210 530,210 530,250" />
-					<polyline class="i3" points="570,10 570,50" />
-					<polyline class="i3" points="570,90 570,250 610,250" />
-					<polyline class="t2" points="610,10 610,210 650,210 650,250 690,250" />
-					<polyline class="t2" points="610,50 690,50" />
-					<polyline class="a" points="650,10 730,10 730,170 650,170 650,90 690,90 690,170" />
-				</svg>
-			</a>
-		</main>
   </body>
 </html>
